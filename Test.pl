@@ -9,7 +9,7 @@ nl,
 get_input2(MinesList, [], PList),
 nl,
 write(PList), nl,
-printboard.
+printboard(PList).
 
 
 
@@ -114,12 +114,12 @@ write(' ').
 checkPList(Guess, [_|Rest]):-
 checkList(Guess, Rest).
 
-board(X,Y):-
+board(X,Y,Plist):-
 checkPList([X,Y], PList).
 
-printboard:-
+printboard(PList):-
 write('  +---+---+---+---+---+---+---+---+---+---+---+---+'), nl,
-write('1 | '), board(1,1), write(' | '), board(2,1), write(' | '), board(3,1), write(' | '), board(4,1), write(' | '), board(5,1), write(' | '), board(6,1), write(' | '), board(7,1), write(' | '), board(8,1), write(' | '), board(9,1), write(' | '), board(10,1), write(' | '), board(11,1), write(' | '), board(12,1), write(' | '), nl,
+write('1 | '), board(1,1,PList), write(' | '), board(2,1,PList), write(' | '), board(3,1,PList), write(' | '), board(4,1,PList), write(' | '), board(5,1,PList), write(' | '), board(6,1,PList), write(' | '), board(7,1,PList), write(' | '), board(8,1,PList), write(' | '), board(9,1,PList), write(' | '), board(10,1,PList), write(' | '), board(11,1,PList), write(' | '), board(12,1,PList), write(' | '), nl,
 write('  +---+---+---+---+---+---+---+---+---+---+---+---+'), nl,
 write('1 | '), board(1,2), write(' | '), board(2,2), write(' | '), board(3,2), write(' | '), board(4,2), write(' | '), board(5,2), write(' | '), board(6,2), write(' | '), board(7,2), write(' | '), board(8,2), write(' | '), board(9,2), write(' | '), board(10,2), write(' | '), board(11,2), write(' | '), board(12,2), write(' | '), nl,
 write('  +---+---+---+---+---+---+---+---+---+---+---+---+'), nl,
