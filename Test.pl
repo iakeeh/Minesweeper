@@ -6,7 +6,7 @@ write(Mines),
 numList(Mines, MinesList),
 nl, write('Mines List: '), minesList(MinesList),
 nl,
-get_input2(MinesList, [], PList),
+get_input2(MinesList, [], PList, 1),
 nl,
 write(PList), nl,
 printboard(PList).
@@ -85,13 +85,21 @@ append(L1, [Y], Result),
 L is Loop-1, getYList(L, Result, YList).
 %%%%__________MaKing List of Mine Location section end________________________%
 
-get_input2(MinesList, PList, NewPList):-
+
+
+get_input2(MinesList, PList, PList, 0):-
+nl, write('User chose to stop guessing'), nl.
+
+
+get_input2(MinesList, PList, NewPList, 1):-
 nl, write('Taking User Guess.'),
 nl, write('Guess X Location: '), read(X),
-nl, write('Guess Y Location: '), read(Y),
-checkList([X,Y], MinesList), 
-append(PList, [X,Y], NewPList),
-!.
+write('Guess Y Location: '), read(Y),
+checkList([X,Y], MinesList),
+nl, write('Contiune guessing'),
+nl, write('type 1 for yes, or anything else for no: '), read(Choice),
+(Choice is 1 -> get_input2(MinesList, [[X,Y]|PList], NewPList, 1);
+get_input2(MinesList, [[X,Y]|PList], NewPList, 0)), !.
 
 
 %the UserGuess should be sent in format [X, Y]
@@ -106,7 +114,7 @@ checkList(Guess, Rest).
 
 
 checkPList(Guess, []):-
-write('?').
+write('@').
 
 checkPList(Guess, [Guess|_]):-
 write(' ').
